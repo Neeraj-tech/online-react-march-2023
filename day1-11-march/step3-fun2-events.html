@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            background-color: darkslateblue;
+            margin: 10px auto;
+            width: 800px;
+            height: 300px;
+        }
+        .container .box{
+            background-color: darkorange;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+    <script>
+        function addbox(){
+            alert("box will be added");
+        }
+        function init(){
+            document.getElementsByTagName("button")[0].addEventListener("click", addbox)
+        };
+        document.addEventListener("DOMContentLoaded", init);
+    </script>
+</head>
+<body>
+    <button>Add Box</button>
+    <hr/>
+    <div class="container"></div>
+</body>
+</html>
