@@ -11,27 +11,43 @@
             margin: 10px auto;
             width: 800px;
             height: 300px;
+            border: 1px solid transparent;
+            overflow: auto;
         }
         .container .box{
             background-color: darkorange;
             width: 100px;
             height: 100px;
+            margin: 5px;
             text-align: center;
             line-height: 100px;
+            float: left;
         }
     </style>
     <script>
         function addbox(){
-            alert("box will be added");
+            // alert("box will be added");
+            // virtual element
+            var box = document.createElement("div");
+            // set attribute on virtual element
+            box.setAttribute("class","box");
+            // add the virtual element to container
+            document.getElementsByClassName("container")[0].appendChild(box);
+        }
+        function stopAddinbBox(){
+            // alert("you clicked the stop button")
+            document.getElementsByTagName("button")[0].removeEventListener("click", addbox);
         }
         function init(){
-            document.getElementsByTagName("button")[0].addEventListener("click", addbox)
+            document.getElementsByTagName("button")[0].addEventListener("click", addbox);
+            document.getElementsByTagName("button")[1].addEventListener("click", stopAddinbBox);
         };
-        document.addEventListener("DOMContentLoaded", init);
+        window.addEventListener("load", init);
     </script>
 </head>
 <body>
     <button>Add Box</button>
+    <button>Stop Adding Box</button>
     <hr/>
     <div class="container"></div>
 </body>
