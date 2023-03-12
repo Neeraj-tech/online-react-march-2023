@@ -4,3 +4,19 @@ http://p.ip.fi/HFLa
 rest with other params
 http://p.ip.fi/3y3o
 
+with destructuring
+http://p.ip.fi/OPQk
+
+arrow functions
+http://p.ip.fi/fqCt
+++++++++++++++++++++++++++++++
+
+ECMA
+JavaScript 1.8.0 
+ES5 2015
+ES6 2016
+ES7 2017
+ES Latest 2018 ~ 2022
+ES Next   2018 ~ 2022
+
+++++++++++++++++++++++++++++++
