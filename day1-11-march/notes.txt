@@ -24,3 +24,15 @@ vscode-icons
 v12.2.0
 VSCode Icons Team
 ---------------
+
+
+shortcuts
+---------------
+create a file with extension .html
+html:5 / !
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+http://p.ip.fi/fcVZ
+
+http://p.ip.fi/9bQu
