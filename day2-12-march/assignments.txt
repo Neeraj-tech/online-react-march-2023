@@ -1,0 +1,15 @@
+Assignment #1
+create an example to illustrate the execution process in DOM 
+create 3 functions call them fun1, fun2 and fun3
+call the fun1 on body onload 
+call the fun2 on window.addEventListener("load", fun2 ) 
+call the fun3 on document.addEventListener("DOMContentLoaded", fun3)
+
+and findout which of these function executed first, second and third;
+
+
+Assignment #2
+replace the adder function in step1-rest-spread.html
+to use reduce method 
+
+Assignment #3

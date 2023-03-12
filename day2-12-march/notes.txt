@@ -9,6 +9,16 @@ http://p.ip.fi/OPQk
 
 arrow functions
 http://p.ip.fi/fqCt
+
+arrow function scrope
+http://p.ip.fi/D73T
+
+bind
+http://p.ip.fi/UbdA
+
+array methods
+http://p.ip.fi/fN8e
+
 ++++++++++++++++++++++++++++++
 
 ECMA
@@ -20,3 +30,23 @@ ES Latest 2018 ~ 2022
 ES Next   2018 ~ 2022
 
 ++++++++++++++++++++++++++++++
+
+>> intro to course
+>> events in JS
+>> virtual elements
+>> creating, accessing and deleting the virtual element
+
+>>  functional improvements
+>>	default parameters
+>>	rest and spread syntax along with destructuring
+>>	arrow function
+
+>> templates literals
+>> array methods
+>>  foreach
+>>  map
+>>  filter
+>>  reduce
+
+class and module
+react intro
