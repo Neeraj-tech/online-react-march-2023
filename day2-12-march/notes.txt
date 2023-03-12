@@ -1,0 +1,6 @@
+rest
+http://p.ip.fi/HFLa
+
+rest with other params
+http://p.ip.fi/3y3o
+
