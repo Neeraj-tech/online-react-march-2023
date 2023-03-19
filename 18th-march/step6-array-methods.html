@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Methods</title>
+    <script>
+        let favnums = [8,3,9,1,5];
+        /* 
+        for(var i = 0; i < favnums.length; i++){
+            console.log(favnums[i]);
+        } 
+        */
+       /*  
+        favnums.forEach(function(val, idx, arr){
+            console.log("for each was called for ", val);
+        }) 
+        */
+        /* 
+        favnums.forEach( val => {
+            console.log("for each was called for ", val);
+        }); 
+        */
+        /* 
+        let doubleFavNums = favnums.map(function(val,idx,arr){
+           return val * 2
+        }); 
+        */
+       /*  
+        let doubleFavNums = favnums.map((val)=> val * 2);
+        console.log(doubleFavNums); 
+        */
+
+        // favnums.reverse().forEach(val => console.log(val));
+        /* let moreThan5 = favnums.filter(val => val > 5);
+
+        console.log(moreThan5); */
+
+        let doubleFavNums = [];
+
+        favnums.forEach(function(val, idx, arr){
+            doubleFavNums.push(val * 2);
+        });
+
+        console.log(doubleFavNums);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

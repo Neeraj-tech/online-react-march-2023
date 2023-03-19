@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /* 
+         constructor
+         public & private property
+         public & private method
+         getters and setters for private property
+         static property or method
+        */
+        class Hero{
+            title = "Batman";
+            firstname = "Bruce";
+            lastname = "Wayne";
+            #power = 5;
+            static version = 101;
+            fullname(){
+                return this.firstname+" "+this.lastname;
+            }
+            get power(){
+                return this.#power;
+            }
+            set power(npower){
+                this.#power = npower;
+            }
+        };
+
+        var hero = new Hero();
+        console.log(hero.title);
+        console.log( hero.power );
+        hero.power = 10;
+        console.log( hero.power );
+        console.log( Hero.version );
+        console.log( hero.fullname() );
+        console.log( Hero.version );
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

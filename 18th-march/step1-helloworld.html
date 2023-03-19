@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- 
+<h1>1</h1>
+<h1>2</h1>
+<h1>3</h1>
+<h1>4</h1>
+<h1>5</h1> 
+-->
+<script>
+   // alert("hello from react training");
+   /*  
+    var h1tags = document.getElementsByTagName("h1");
+    for(var i = 0; i < h1tags.length; i++ ){
+        h1tags[i].innerText = "changed"
+    }; 
+    */
+    for( var i = 0; i < 10; i++ ){
+        var elm = document.createElement("h1");
+            elm.innerText = "hello there "+i;
+        document.body.appendChild(elm); 
+    }; 
+  
+</script>
+</body>
+</html>

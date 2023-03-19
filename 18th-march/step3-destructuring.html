@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destructuring</title>
+    <script>
+        var hero = {
+            title : "ironman",
+            power : 6
+        };
+
+       /*  
+        var temphero = hero;
+
+        console.log("temphero ",temphero.power);
+        console.log("hero ",hero.power);
+        temphero.power+=100;
+        console.log("temphero ",temphero.power);
+        console.log("hero ",hero.power);
+        temphero.city = "New York";
+        console.log("temphero ",temphero.city);
+        console.log("hero ",hero.city); 
+        */
+
+       /*  
+        var herotitle = hero.title;
+        var heropower = hero.power;
+        
+        console.log("heropower ",heropower);
+        console.log("hero.power ",hero.power);
+        heropower+=100;
+        console.log("heropower ",heropower);
+        console.log("hero.power ",hero.power);
+       */
+
+       /* 
+       var herotitle = hero.title;
+       var heropower = hero.power; 
+       */
+
+      /*  
+       var { title: herotitle, power : heropower } = hero;
+       console.log("heropower ", heropower);
+       console.log("hero.power ", hero.power);
+       heropower+=100;
+       console.log("heropower ", heropower);
+       console.log("hero.power ",hero.power); 
+       */
+
+       var temphero = {...hero};
+       console.log("temphero ",temphero.power);
+       console.log("hero ",hero.power);
+       temphero.power+=100;
+       console.log("temphero ",temphero.power);
+       console.log("hero ",hero.power);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

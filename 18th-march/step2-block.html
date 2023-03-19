@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blocks</title>
+    <script>
+        var hero = {
+            title : "ironman",
+            power : 6
+        };
+
+       /*  
+       function changeTitle(){
+            if( hero.power > 5 ){ 
+                var temptitle = hero.title;
+                hero.title = temptitle+" is strong";
+            }
+            console.log(temptitle);
+        };
+        */
+        /* 
+        function changeTitle(){
+            var temptitle = undefined;// hoisting
+            if( hero.power > 5 ){ 
+                temptitle = hero.title;
+                hero.title = temptitle+" is strong";
+            }
+            console.log(temptitle);
+        }; 
+        */
+
+        function changeTitle(){
+            if( hero.power > 5 ){ 
+                // var temptitle = hero.title;
+                // let temptitle = hero.title; // block ( can change )
+                // const temptitle = hero.title; // block ( constant )
+                let temptitle = hero.title;
+                hero.title = temptitle+" is strong";
+            }
+            //console.log(temptitle);
+        }; 
+        changeTitle();
+
+        console.log(hero.title);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
