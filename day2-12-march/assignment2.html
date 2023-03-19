@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*         
+        function adder(...nums){
+            var total = 0;
+            for(let i = 0; i < nums.length; i++){
+                total+=nums[i];
+            };
+            return total;
+        }; 
+        */
+        
+        function adder(...nums){
+            return nums.reduce((initval, val) => initval+val,0);
+        };
+        let favnums = [2,7,1,9,4,13,6,8,94,26,70];
+        console.log( adder(...favnums) );
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

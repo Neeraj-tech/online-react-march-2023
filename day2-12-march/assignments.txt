@@ -11,5 +11,3 @@ and findout which of these function executed first, second and third;
 Assignment #2
 replace the adder function in step1-rest-spread.html
 to use reduce method 
-
-Assignment #3
