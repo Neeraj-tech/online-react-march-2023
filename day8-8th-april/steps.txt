@@ -1,0 +1,504 @@
+// step1 before useReducer
+--------------------------
+import { useState } from "react";
+
+let App = () => {
+    
+    let [power, powerHandler] = useState(0);
+    let [version, versionHandler] = useState(100);
+
+    let powerIncreaseHandler = ()=>{
+        powerHandler(power+1)
+    }
+    let powerDecreaseHandler = ()=>{
+        powerHandler(power-1)
+    }
+    let versionIncreaseHandler = ()=>{
+        versionHandler(version+1)
+    }
+    let versionDecreaseHandler = ()=>{
+        versionHandler(version-1)
+    }
+    return <div> 
+            <h1>Use State</h1> 
+            <h2>Power : { power }</h2>
+            <button onClick={ powerIncreaseHandler }>Increase Power</button>
+            <button onClick={ powerDecreaseHandler }>Decrease Power</button>
+            <hr />
+            <h2>Version : { version }</h2>
+            <button onClick={ versionIncreaseHandler }>Increase Power</button>
+            <button onClick={ versionDecreaseHandler }>Decrease Power</button>
+
+           </div>
+}
+
+export default App;
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// step1 before useReducer
+--------------------------
+
+import { useState } from "react";
+
+let App = () => {
+
+    let [hero, setState] = useState({ power : 0, version : 100 });
+
+    let powerIncreaseHandler = ()=>{
+        setState({ ...hero, power : hero.power + 1 })
+    }
+    let powerDecreaseHandler = ()=>{
+        setState({ ...hero, power : hero.power - 1 })
+    }
+    let versionIncreaseHandler = ()=>{
+        setState({ ...hero, version : hero.version + 1 })
+    }
+    let versionDecreaseHandler = ()=>{
+        setState({ ...hero, version : hero.version - 1 })
+    }
+    return <div> 
+            <h1>Use State</h1> 
+            <h2>Power : { hero.power }</h2>
+            <button onClick={ powerIncreaseHandler }>Increase Power</button>
+            <button onClick={ powerDecreaseHandler }>Decrease Power</button>
+            <hr />
+            <h2>Version : { hero.version }</h2>
+            <button onClick={ versionIncreaseHandler }>Increase Power</button>
+            <button onClick={ versionDecreaseHandler }>Decrease Power</button>
+
+           </div>
+}
+
+export default App;
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// step1 useReducer simple
+--------------------------
+import { useReducer } from "react";
+
+let App = () => {
+
+    let reducerFun = (state, action)=>{
+        switch(action.type){
+            case "INCREASEPOWER" : return { ...state, power : state.power + 1 }
+            case "DECREASEPOWER" : return { ...state, power : state.power - 1 }
+            case "SETVERSION" : return { ...state, power : action.payload  }
+            case "INCREASEVERSION" : return { ...state, version : state.version + 1 }
+            case "DECREASEVERSION" : return { ...state, version : state.version - 1 }
+            default : return state
+        } 
+        /* 
+        if( action.type === "INCREASEPOWER"){
+            return {  ...state, power : state.power + 1 }
+        }else if( action.type === "DECREASEPOWER"){
+            return {  ...state, power : state.power - 1 }
+        }else if(action.type === "SETVERSION"){
+            return {  ...state, power : action.payload  }
+        }else if(action.type === "INCREASEVERSION"){
+            return {  ...state, version : state.version + 1 }
+        }else if(action.type === "DECREASEVERSION"){
+            return {  ...state, version : state.version - 1 }
+        }else{
+            return  state 
+        } 
+        */
+    };
+
+    let [store, dispatch] = useReducer(reducerFun, { power : 0, version : 100 });
+
+
+    return <div> 
+            <h1>Use State</h1> 
+            <h2>Power : { store.power }</h2>
+            <button onClick={ ()=> dispatch( { type : "INCREASEPOWER" } ) }>Increase Power</button>
+            <button onClick={ ()=> dispatch( { type : "DECREASEPOWER" } ) }>Decrease Power</button>
+            <button onClick={ ()=> dispatch( { type : "SETVERSION", payload : 10 } ) }>Set Power to 10</button>
+            <hr />
+            <h2>Version : { store.version }</h2>
+            <button onClick={ ()=> dispatch( { type : "INCREASEVERSION" } ) }>Increase Power</button>
+            <button onClick={ ()=> dispatch( { type : "DECREASEVERSION" } ) }>Decrease Power</button>
+           </div>
+}
+
+export default App;
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// step1 useReducer more
+--------------------------
+
+import { useReducer, useRef } from "react";
+
+let App = () => {
+
+    let reducerFun = (state, action)=>{
+        switch(action.type){
+            case "INCREASEPOWER" : return { ...state, power : state.power + 1 }
+            case "DECREASEPOWER" : return { ...state, power : state.power - 1 }
+            case "SETVERSION" : return { ...state, power : action.payload  }
+            case "INCREASEVERSION" : return { ...state, version : state.version + 1 }
+            case "DECREASEVERSION" : return { ...state, version : state.version - 1 }
+            case "SETTITLE" : return { ...state, title : action.message.title }
+            default : return state
+        } 
+        /* 
+        if( action.type === "INCREASEPOWER"){
+            return {  ...state, power : state.power + 1 }
+        }else if( action.type === "DECREASEPOWER"){
+            return {  ...state, power : state.power - 1 }
+        }else if(action.type === "SETVERSION"){
+            return {  ...state, power : action.payload  }
+        }else if(action.type === "INCREASEVERSION"){
+            return {  ...state, version : state.version + 1 }
+        }else if(action.type === "DECREASEVERSION"){
+            return {  ...state, version : state.version - 1 }
+        }else{
+            return  state 
+        } 
+        */
+    };
+
+    let [store, dispatch] = useReducer(reducerFun, { power : 0, version : 100, title : "default title" });
+
+    let ipref = useRef();
+
+    return <div> 
+            <h1>Use State</h1> 
+            <h2>Power : { store.power }</h2>
+            <button onClick={ ()=> dispatch( { type : "INCREASEPOWER" } ) }>Increase Power</button>
+            <button onClick={ ()=> dispatch( { type : "DECREASEPOWER" } ) }>Decrease Power</button>
+            <button onClick={ ()=> dispatch( { type : "SETVERSION", payload : 10 } ) }>Set Power to 10</button>
+            <hr />
+            <h2>Version : { store.version }</h2>
+            <button onClick={ ()=> dispatch( { type : "INCREASEVERSION" } ) }>Increase Power</button>
+            <button onClick={ ()=> dispatch( { type : "DECREASEVERSION" } ) }>Decrease Power</button>
+            <hr />
+            <h2>Title : { store.title }</h2>
+            <input type="text" ref={ipref} />
+            <button onClick={ ()=> dispatch( { type : "SETTITLE", message : { title : ipref.current.value }  } ) }>Set Title</button>
+           </div>
+}
+
+export default App;
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// step2 forms
+--------------
+import { Component } from "react";
+/*
+user name 
+user age
+*/
+class App extends Component {
+    state = {
+        uname : "",
+        uage : 0
+    }
+    /* 
+    updateUserName = (evt)=>{
+        this.setState({ uname : evt.target.value })
+    }
+    updateUserAge = (evt)=>{
+        this.setState({ uage : Number(evt.target.value) })
+    } 
+    */
+   updateState = (evt)=>{
+    this.setState({ [evt.target.id] : evt.target.value });
+   }
+    render(){
+        return <div className="container"> 
+                    <h1>Using Forms</h1> 
+                    <div className="mb-3">
+                        <label htmlFor="uname" className="form-label">User Name</label>
+                        <input onChange={ (evt)=> this.updateState(evt) } value={ this.state.uname } type="text" className="form-control" id="uname" />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="uage" className="form-label">User Age</label>
+                        <input onChange={ (evt)=> this.updateState(evt) } value={ this.state.uage } type="number" className="form-control" id="uage" />
+                    </div>
+                    <div className="mb-3">
+                        <button type="submit" className="btn btn-primary mb-3">Confirm identity</button>
+                    </div>
+                    <hr />
+                    <ul>
+                        <li>User Name { this.state.uname } </li>
+                        <li>User Age { this.state.uage } </li>
+                    </ul>
+               </div>
+    }
+}
+
+export default App;
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+import { Component } from "react";
+/*
+user name 
+user age
+*/
+class App extends Component {
+    state = {
+        uname : "",
+        uage : 0
+    }
+    /* 
+    updateUserName = (evt)=>{
+        this.setState({ uname : evt.target.value })
+    }
+    updateUserAge = (evt)=>{
+        this.setState({ uage : Number(evt.target.value) })
+    } 
+    */
+   updateState = (evt)=>{
+    if(evt.target.id === "uage"){
+        this.setState({ [evt.target.id] : Number(evt.target.value) });
+    }else{
+        this.setState({ [evt.target.id] : evt.target.value });
+    }
+   }
+    render(){
+        return <div className="container"> 
+                    <h1>Using Forms</h1> 
+                    <div className="mb-3">
+                        <label htmlFor="uname" className="form-label">User Name</label>
+                        <input onChange={ (evt)=> this.updateState(evt) } value={ this.state.uname } type="text" className="form-control" id="uname" />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="uage" className="form-label">User Age</label>
+                        <input onChange={ (evt)=> this.updateState(evt) } value={ this.state.uage } type="number" className="form-control" id="uage" />
+                    </div>
+                    <div className="mb-3">
+                        <button type="submit" className="btn btn-primary mb-3">Confirm identity</button>
+                    </div>
+                    <hr />
+                    <ul>
+                        <li>User Name { this.state.uname } </li>
+                        <li>User Age { this.state.uage } </li>
+                    </ul>
+               </div>
+    }
+}
+
+export default App;
+
+
+/* 
+let hero = {
+    title : "Batman",
+    age : 21,
+    movie1 : "Batman begins",
+    movie2 : "The Dark Knight"
+}
+
+console.log( hero.title );
+var count = 1;
+console.log( hero['movie'+(count+1)] ); 
+*/
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    import { Component, useState } from "react";
+     
+    let App = ()=> {
+     
+        let [user, updateHero] = useState({ uname : "", uage : 0 });
+     
+        let clickHandler = (evt)=>{
+            updateHero({...user, [evt.target.id] : evt.target.value })
+        }
+     
+        return <div className="container"> 
+                        <h1>Using Forms</h1> 
+                        <div className="mb-3">
+                            <label htmlFor="uname" className="form-label">User Name</label>
+                            <input onChange={ (evt)=> clickHandler(evt) } value={ user.uname } type="text" className="form-control" id="uname" />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="uage" className="form-label">User Age</label>
+                            <input onChange={ (evt)=> clickHandler(evt) } value={ user.uage } type="number" className="form-control" id="uage" />
+                        </div>
+                        <div className="mb-3">
+                            <button type="submit" className="btn btn-primary mb-3">Confirm identity</button>
+                        </div>
+                        <hr />
+                        <ul>
+                            <li>User Name { user.uname } </li>
+                            <li>User Age { user.uage } </li>
+                        </ul>
+                   </div>
+     
+    }
+     
+    export default App;
+     
+     
+    /* 
+    let hero = {
+        title : "Batman",
+        age : 21,
+        movie1 : "Batman begins",
+        movie2 : "The Dark Knight"
+    }
+     
+    console.log( hero.title );
+    var count = 1;
+    console.log( hero['movie'+(count+1)] ); 
+    */
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+import { useReducer } from "react";
+
+let App = ()=> {
+
+   let reducer = (state, action)=>{
+        switch(action.type){
+            case "CHANGEUSERNAME" : return { ...state, uname : action.payload }
+            case "CHANGEUSERAGE" : return { ...state, uage : action.payload }
+            default : return state
+        } 
+    }
+    
+    let [store, dispatch] = useReducer(reducer, { uname : "", uage : 0 });
+
+    
+    return <div className="container"> 
+                    <h1>Using Forms</h1> 
+                    <div className="mb-3">
+                        <label htmlFor="uname" className="form-label">User Name</label>
+                        <input onChange={ (evt)=> dispatch({ type : "CHANGEUSERNAME", payload : evt.target.value }) } type="text" className="form-control" id="uname" />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="uage" className="form-label">User Age</label>
+                        <input onChange={ (evt)=> dispatch({ type : "CHANGEUSERAGE", payload : evt.target.value }) }  type="number" className="form-control" id="uage" />
+                    </div>
+                    <div className="mb-3">
+                        <button type="submit" className="btn btn-primary mb-3">Confirm identity</button>
+                    </div>
+                    <hr />
+                    <ul>
+                        <li>User Name { store.uname } </li>
+                        <li>User Age { store.uage } </li>
+                    </ul>
+               </div>
+
+}
+
+export default App;
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+let AquamanComp = ()=>{
+    return <div>
+                <h2>Aquaman Component</h2>
+            </div>
+};
+export default AquamanComp
+--------------------------------------------
+let BatmanComp = ()=>{
+    return <div>
+                <h2>Batman Component</h2>
+            </div>
+};
+export default BatmanComp
+--------------------------------------------
+let NotFoundComp = ()=>{
+    return <div>
+                <h2>NotFound Component</h2>
+            </div>
+};
+export default NotFoundComp
+--------------------------------------------
+let SupermanComp = ()=>{
+    return <div>
+                <h2>Batman Component</h2>
+            </div>
+};
+export default SupermanComp
+--------------------------------------------
+let WonderWomenComp = ()=>{
+    return <div>
+                <h2>WonderWomen Component</h2>
+            </div>
+};
+export default WonderWomenComp
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+let App = ()=> {
+    
+    return <div className="container"> 
+                    <h1>Using Routes</h1> 
+                <BrowserRouter>
+                    {/* all our router configurations come here */}
+                    {/* <ul>
+                        <li> <a href="/">Home</a> </li>
+                        <li> <a href="/about">About</a> </li>
+                        <li> <a href="/product">Product</a> </li>
+                        <li> <a href="/contact">Contact</a> </li>
+                    </ul> */}
+                    <ul>
+                        <li> <Link to="/">Home</Link> </li>
+                        <li> <Link to="/about">About</Link> </li>
+                        <li> <Link to="/product">Product</Link> </li>
+                        <li> <Link to="/contact">Contact</Link> </li>
+                    </ul>
+                    <Routes>
+                        <Route path="/" element={ <h1> this is the default route </h1>} />
+                        <Route path="/about" element={ <h1> this is the about route </h1>} />
+                        <Route path="/product" element={ <h1> this is the product route </h1>} />
+                        <Route path="/contact" element={ <h1> this is the contact route </h1>} />
+                    </Routes>
+                </BrowserRouter>
+           </div>
+
+}
+
+export default App;
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import HomeComp from "./components/home";
+import BatmanComp from "./components/batman";
+import AquamanComp from "./components/aquaman";
+import SupermanComp from "./components/superman";
+import WonderWomenComp from "./components/wonderwomen";
+import NotFoundComp from "./components/notfound";
+let App = ()=> {
+    
+    return <div className="container"> 
+                    <h1>Using Routes</h1> 
+                <BrowserRouter>
+                    {/* all our router configurations come here */}
+                    {/* <ul>
+                        <li> <a href="/">Home</a> </li>
+                        <li> <a href="/about">About</a> </li>
+                        <li> <a href="/product">Product</a> </li>
+                        <li> <a href="/contact">Contact</a> </li>
+                    </ul> */}
+                    <ul>
+                        <li> <Link to="/">Home</Link> </li>
+                        <li> <Link to="/batman">Batman</Link> </li>
+                        <li> <Link to="/superman">Superman</Link> </li>
+                        <li> <Link to="/aquaman">Aquaman</Link> </li>
+                        <li> <Link to="/wonderwomen">Wonder Women</Link> </li>
+                        <li> <Link to="/flash">Flash</Link> </li>
+                        <li> <Link to="/cyborg">Cyborg</Link> </li>
+                    </ul>
+                    <Routes>
+                        <Route path="/" element={ <HomeComp/> } />
+                        <Route path="/batman" element={ <BatmanComp/> } />
+                        <Route path="/superman" element={ <SupermanComp/> } />
+                        <Route path="/aquaman" element={ <AquamanComp/>} />
+                        <Route path="/wonderwomen" element={ <WonderWomenComp/>} />
+                        <Route path="*" element={ <NotFoundComp/>} />
+                    </Routes>
+                </BrowserRouter>
+           </div>
+
+}
+
+export default App;
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
