@@ -1,0 +1,128 @@
+cd server 
+npm init -y
+npm i express mongoose cors 
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+    let express = require("express");
+    let mongoose = require("mongoose");
+    let cors = require("cors");
+    let config = require("./config.json")
+    //-------------------------------------
+    let app = express();
+    // Middlewear 
+    app.use(cors()).use(express.json());
+    // MERN : MongoDB Express React and Node
+    //-------------------------------------
+    // configuration to connect to DB
+    let Schema = mongoose.Schema;
+    let ObjectId = Schema.ObjectId;
+    let User = mongoose.model("User",Schema({
+        id : ObjectId,
+        title : String,
+        firstname : String,
+        lastname : String,
+        city : String,
+        power : String
+    }));
+    let url = `mongodb+srv://${config.username}:${config.password}@cluster0.${config.dbstring}.mongodb.net/${config.dbname}?retryWrites=true&w=majority`
+    mongoose.connect(url)
+    .then(res => console.log("DB Connected"))
+    .catch(err => console.log("Error ", err))
+     
+    //-------------------------------------
+    app.get("/data",(req, res)=> {
+        User.find()
+        .then(dbres=> res.send(dbres))
+        .catch(err => console.log("Error ", err));
+    } );
+    app.post("/data",(req, res)=> {
+        let user = new User(req.body);
+        user.save()
+        .then(dbres => res.send({ message : "User Added", userTitle : req.body.title  }))
+        .catch(dberr => console.log("Error ", dberr)) 
+    } );
+    app.delete("/delete/:uid",(req, res)=> {
+        User.findByIdAndDelete({ _id: req.params.uid })
+        .then(dbres => res.send({ message : "User Deleted", userTitle : dbres.title }) )
+        .catch(error => console.log("Error ", dberr )) 
+    } );
+    app.get("/update/:uid",(req, res)=> {
+        User.findById({_id : req.params.uid })
+        .then(dbres => res.send( dbres ))
+        .catch(error => console.log("Error ", error))
+    } );
+    app.put("/update/:uid",(req, res)=> {
+        User.findById({ _id : req.params.uid })
+        .then(dbres => {
+            dbres.title = req.body.title;
+            dbres.firstname = req.body.firstname;
+            dbres.lastname = req.body.lastname;
+            dbres.city = req.body.city;
+            dbres.power = req.body.power;
+            dbres.save().then(updateres => res.send({ message : "User Updated ", userTitle : dbres.title }))
+        })
+        .catch(error => console.log("Error ", error ))
+    } );
+     
+    // CREATE / from CRUD
+    // setTimeout(function(){
+        /* READ 
+        User.find().then(dbres=> console.log(dbres))
+        .catch(err => console.log("Error ", err));
+        */
+     
+       /* CREATE
+       let user = new User({
+           title : "Superman",
+           firstname : "Clark",
+           lastname : "Kent",
+           city : "Metropolis",
+           power : "9"
+        });
+        user.save()
+        .then(dbres => console.log("user added"))
+        .catch(dberr => console.log("Error ", dberr)) 
+        */
+     
+        /* UPDATE
+        User.findById("6432eee70f16f32b2e2f72ed")
+        .then(dbres => {
+            dbres.power = 5
+            dbres.save().then(updateres => console.log( "Updated "))
+        })
+        .catch( error => console.log("Error Updating ", error )) 
+        */
+     
+     
+        /*  DELETE
+        User.findByIdAndDelete({ _id: "6432eee70f16f32b2e2f72ed" })
+        .then( dbres => console.log("Deleted ", dbres))
+        .catch( error => console.log("Error ", error ));
+        */
+        
+     // },2000)
+     
+    //-------------------------------------
+    app.listen(config.port,config.host,function(err){
+        if(err){ console.log("Error ", err)}
+        else{ console.log(`Webserver is now live on ${config.host} : ${config.port}`)}
+    })
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+config.json
+-------------
+
+{
+    "port" : 5050,
+    "host" : "localhost",
+    "username" : "admin",
+    "password" : "",
+    "dbname" : "usersdb",
+    "dbstring" : ""
+}
+
+
+
