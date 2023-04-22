@@ -1,0 +1,93 @@
+// lets load all dependencies
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const config = require("./config.json");
+//-----------------------------------
+
+let app = express();
+let Schema = mongoose.Schema;
+let ObjectId = Schema.ObjectId;
+let User = mongoose.model("User",Schema({
+    id : ObjectId,
+    title : String,
+    firstname : String,
+    lastname : String,
+    power : String,
+    city : String
+}));
+
+const url = config.url.replace("{{user}}", config.user)
+                      .replace("{{password}}", config.password)
+                      .replace("{{dbname}}", config.dbname)
+                      .replace("{{clusterName}}", config.clusterName)
+                      .replace("{{dbstring}}", config.dbstring);
+
+mongoose.connect(url)
+.then(res=>console.log("DB Connected"))
+.catch(error=>console.log("Error ", error));
+
+/* 
+app.get("/",function(req, res){
+    res.send("welcome to your life");
+});
+
+app.get("/data",function(req, res){
+    res.send("you have reached data route");
+});
+ */
+// CRUD
+// create
+/* 
+let user = new User({
+    title : "Superman",
+    firstname : "Clark",
+    lastname : "Kent",
+    power : 7,
+    city : "Metropolis"
+});
+user.save()
+.then(dbres => console.log(dbres.title, " was added"))
+.catch(err => console.log("Error ", err)); 
+*/
+
+// read 
+/* 
+app.get("/",function(req, res){
+    User.find()
+    .then(dbres => res.send(dbres))
+    .catch(err => console.log("Error Fetching Records", err))
+}); 
+*/
+/* 
+setTimeout(function(){
+    User.find()
+    .then(res => console.log(res))
+    .catch(err => console.log("Error Fetching Records", err))
+}, 2000);
+*/
+// update
+/* 
+User.findByIdAndUpdate({ _id : "643ac045925567c7cec13f6c" })
+.then( dbres => {
+    let user = new User(dbres);
+    user.power = 5;
+    user.city = "Gotham";
+    user.save().then(updatedinfo => console.log("updated")).catch(error => console.log("Error ", error))
+})
+.catch(err => console.log("Error ", err)); 
+*/
+
+// delete
+/* 
+User.findByIdAndDelete({ _id : "643ac045925567c7cec13f6c"})
+.then(dbres => console.log(dbres.title, " was deleted"))
+.catch(err => console.log("Error ", err)); 
+*/
+
+
+app.listen(config.port,config.host,function(error){
+    if(error){ console.log("Error ", error )}
+    else{ console.log(`Express is now running on ${config.host}:${config.port}`) }
+})
+
