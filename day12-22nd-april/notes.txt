@@ -1,0 +1,35 @@
+npm init -y
+    once the package.json is created
+npm i redux 
+
+// action type ( intention )
+// action object creator ( function that creates action object )
+// default state object 
+// reducer
+// store 
+    // dispatch
+    // subscribe
+    // unsubscribe
+
+step1.js
+http://p.ip.fi/W-B2
+
+step2.js
+http://p.ip.fi/NBTF
+
+step3.js
+http://p.ip.fi/6iNb
+
+step3.js
+http://p.ip.fi/3hHY
+
+step4 before redux and middleware 
+http://p.ip.fi/4B7q
+
+
+----------------------------------------
+vite
+npm create vite@latest folderName
+
+next
+npx create-next-app@latest projectName
